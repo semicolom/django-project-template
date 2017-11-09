@@ -1,30 +1,48 @@
 PIP=`. venv/bin/activate; which pip`
+TMP_PIP=`. temp_venv/bin/activate; which pip`
 PYTHON=`. venv/bin/activate; which python`
-REQUIREMENTS:=requirements/base.txt
+REQUIREMENTS:=requirements/requirements.txt
+REQUIREMENTS_BASE:=requirements/base.txt
 REQUIREMENTS_TEST:=requirements/test.txt
+
+.PHONY: requirements
 
 clean:
 	@find . -name *.pyc -delete
 	@rm -rf venv
 
+requirements:
+	virtualenv -p python3.5 temp_venv
+	$(TMP_PIP) install -U "pip"
+	$(TMP_PIP) install -r $(REQUIREMENTS_BASE)
+	$(TMP_PIP) freeze > requirements/requirements.txt
+	@rm -rf temp_venv
+
 virtualenv_base:
 	test -d venv || virtualenv -p python3.5 venv
 	$(PIP) install -U "pip"
 
-virtualenv:
+virtualenv_prod: virtualenv_base
 	$(PIP) install -r $(REQUIREMENTS)
 
-virtualenv_test:
+virtualenv: virtualenv_base
 	$(PIP) install -r $(REQUIREMENTS_TEST)
 
-requirements.txt: virtualenv
-	$(PIP) freeze > requirements/requirements.txt
+install: requirements virtualenv
 
-test: virtualenv_test
-	$(PYTHON) manage.py test
+isort: virtualenv
+	isort -rc
 
-lint: virtualenv_test
+test: virtualenv
+	isort -rc -c
 	flake8
+	$(PYTHON) manage.py test --settings=settings.dev
 
-isort: virtualenv_test
-	isort
+run: virtualenv
+	$(PYTHON) manage.py runserver --settings=settings.dev
+
+makemigrations: virtualenv
+	$(PYTHON) manage.py makemigrations --settings=settings.dev
+
+migrate: virtualenv
+	$(PYTHON) manage.py migrate --settings=settings.dev
