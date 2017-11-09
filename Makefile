@@ -36,7 +36,8 @@ isort: virtualenv
 test: virtualenv
 	isort -rc -c
 	flake8
-	$(PYTHON) manage.py test --settings=settings.dev
+	coverage run --source='.' manage.py test --settings=settings.dev
+	coverage report
 
 run: virtualenv
 	$(PYTHON) manage.py runserver --settings=settings.dev
