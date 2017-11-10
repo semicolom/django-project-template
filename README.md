@@ -1,4 +1,23 @@
-# {{ project_name }}
+{% comment %}
+# Django Project Template
+
+## It comes with
+- Makefile
+- flake8
+- isort
+- coverage
+
+## Installation
+```
+virtualenv --python=python3.5 test_venv
+source test_venv/bin/activate
+pip install django
+django-admin startproject --template=https://github.com/tcolom/django-project-template/archive/master.zip --extension=md project_name
+deactivate
+rm -rf virtualenv
+```
+{% endcomment %}
+# {{ project_name | title }}
 
 ## Installation
 
