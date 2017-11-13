@@ -31,7 +31,7 @@ virtualenv: virtualenv_base
 install: requirements virtualenv
 
 isort: virtualenv
-	isort -rc
+	isort -rc -y
 
 test: virtualenv
 	isort -rc -c
