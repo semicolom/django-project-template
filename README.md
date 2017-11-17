@@ -2,10 +2,12 @@
 # Django Project Template
 
 ## It comes with
+- Django
 - Makefile
 - flake8
 - isort
 - coverage
+- Django Debug Toolbar
 
 ## Installation
 ```
