@@ -8,6 +8,7 @@
 - isort
 - coverage
 - Django Debug Toolbar
+- Model Mommy
 
 ## Installation
 ```
