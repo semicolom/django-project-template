@@ -17,7 +17,7 @@ source test_venv/bin/activate
 pip install django
 django-admin startproject --template=https://github.com/tcolom/django-project-template/archive/master.zip --extension=md project_name
 deactivate
-rm -rf virtualenv
+rm -rf test_venv
 ```
 {% endcomment %}
 # {{ project_name | title }}
