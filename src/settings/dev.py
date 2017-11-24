@@ -2,12 +2,12 @@ from .base import *
 
 DEBUG = True
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# Database
+DATABASES['default'].update({
+    'USER': '{{ project_name }}',
+    'PASSWORD': '{{ project_name }}',
+    'HOST': '127.0.0.1',
+})
 
 # Django debug toolbar settings
 INSTALLED_APPS += [

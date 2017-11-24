@@ -26,6 +26,16 @@ rm -rf test_venv
 
 Run `make install`
 
+Create a PostgreSQL database
+```sh
+sudo su - postgres
+psql
+CREATE DATABASE {{ project_name }};
+CREATE USER {{ project_name }} WITH PASSWORD '{{ project_name }}';
+GRANT ALL PRIVILEGES ON DATABASE {{ project_name }} TO {{ project_name }};
+ALTER USER {{ project_name }} CREATEDB;
+```
+
 ## Run tests
 
 Run `make tests`. It will do isort-check, lint and django tests.
