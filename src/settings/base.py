@@ -29,6 +29,9 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+    # Local
+    'main.apps.MainConfig',
+
     # Django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
     {
