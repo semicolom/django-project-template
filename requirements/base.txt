@@ -1,3 +1,4 @@
+bpython
 django
 django-extensions
 psycopg2
