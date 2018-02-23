@@ -40,17 +40,17 @@ isort: virtualenv
 test: virtualenv
 	$(ISORT) -rc -c src/
 	$(FLAKE8) src/
-	$(COVERAGE) run --source='src/' src/manage.py test src/ --settings=settings.dev
+	$(COVERAGE) run --source='src/' src/manage.py test src/
 	$(COVERAGE) report
 
-run: virtualenv
-	$(PYTHON) src/manage.py runserver --settings=settings.dev
+run:
+	$(PYTHON) src/manage.py runserver
 
-makemigrations: virtualenv
-	$(PYTHON) src/manage.py makemigrations --settings=settings.dev
+makemigrations:
+	$(PYTHON) src/manage.py makemigrations
 
-migrate: virtualenv
-	$(PYTHON) src/manage.py migrate --settings=settings.dev
+migrate:
+	$(PYTHON) src/manage.py migrate
 
-collectstatic: virtualenv
-	$(PYTHON) src/manage.py collectstatic -l --settings=settings.dev
+collectstatic:
+	$(PYTHON) src/manage.py collectstatic -l
