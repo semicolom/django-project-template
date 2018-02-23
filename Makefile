@@ -53,4 +53,4 @@ migrate:
 	$(PYTHON) src/manage.py migrate
 
 collectstatic:
-	$(PYTHON) src/manage.py collectstatic -l
+	$(PYTHON) src/manage.py collectstatic -l --noinput
