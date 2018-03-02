@@ -16,14 +16,14 @@ clean:
 	@rm -rf venv
 
 requirements:
-	virtualenv -p python3.5 temp_venv
+	virtualenv -p python3.6 temp_venv
 	$(TMP_PIP) install -U "pip"
 	$(TMP_PIP) install -r $(REQUIREMENTS_BASE)
 	$(TMP_PIP) freeze > requirements/requirements.txt
 	@rm -rf temp_venv
 
 virtualenv_base:
-	test -d venv || virtualenv -p python3.5 venv
+	test -d venv || virtualenv -p python3.6 venv
 	$(PIP) install -U "pip"
 
 virtualenv_prod: virtualenv_base
