@@ -1,4 +1,5 @@
-bpython
 django
+
 django-extensions
 psycopg2-binary
+bpython
