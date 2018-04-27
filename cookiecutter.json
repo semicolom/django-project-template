@@ -1,0 +1,11 @@
+{
+  "full_name": "Toni Colom",
+  "github_username": "tcolom",
+  "project_name": "Django Project Template",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_short_description": "Django Project Template contains a basic structure to create a Django Project",
+  "use_pytest": "n",
+  "use_pypi_deployment_with_travis": "n",
+  "add_pyup_badge": "n",
+  "create_author_file": "y",
+}
