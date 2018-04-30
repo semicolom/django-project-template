@@ -2,6 +2,14 @@
 
 ## Installation
 
+Make sure you have installed in your OS
+```
+make
+python3.6
+virtualenv
+postgresql
+```
+
 Create a PostgreSQL database
 ```sh
 sudo su - postgres
