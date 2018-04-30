@@ -3,5 +3,5 @@
   "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
   "description": "My Project description",
   "author_name": "Toni Colom",
-  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com"
+  "author_email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com"
 }

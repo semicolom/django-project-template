@@ -15,6 +15,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
+ADMINS = [
+    ('{{ cookiecutter.author_name }}', '{{ cookiecutter.author_email }}')
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -108,3 +111,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# Django debug toolbar settings
+DEBUG_TOOLBAR = False
+
+# Loggin
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    }
+}

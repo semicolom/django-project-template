@@ -1,5 +1,8 @@
 django
 
-django-extensions
+# PostgrSQL - Python
 psycopg2-binary
+
+# A better shell
+django-extensions
 bpython

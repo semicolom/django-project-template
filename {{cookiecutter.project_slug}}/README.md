@@ -2,8 +2,6 @@
 
 ## Installation
 
-Run `make install`
-
 Create a PostgreSQL database
 ```sh
 sudo su - postgres
@@ -14,6 +12,13 @@ GRANT ALL PRIVILEGES ON DATABASE {{ cookiecutter.project_slug }} TO {{ cookiecut
 ALTER USER {{ cookiecutter.project_slug }} CREATEDB;
 ```
 
+Then run:
+```
+make requirements
+make virtualenv_test
+make migrate
+```
+
 ## Run tests
 
 Run `make tests`. It will do isort-check, lint and django tests.
@@ -22,9 +27,9 @@ Run `make tests`. It will do isort-check, lint and django tests.
 
 Update packages: `make requirements`. Creates a requirements.txt file with the last versions of the packages inside requirements/base.txt. You can run it whenever you want to update your project. It will create a temporary virtualenv.
 
-`make virtualenv_prod` Creates a new virtualenv using requirements.txt.
+`make virtualenv` Creates a new virtualenv using requirements.txt.
 
-`make virtualenv` Creates a development virtualenv using requirements.txt and packages from requirements/test.txt.
+`make virtualenv_test` Creates a development virtualenv using requirements.txt and packages from requirements/test.txt.
 
 `make clean` Removes the .pyc files and deletes the virtualenv folder.
 
