@@ -1,4 +1,4 @@
-# {{ project_name | title }}
+# {{ cookiecutter.project_name }}
 
 ## Installation
 
@@ -8,10 +8,10 @@ Create a PostgreSQL database
 ```sh
 sudo su - postgres
 psql
-CREATE DATABASE {{ project_name }};
-CREATE USER {{ project_name }} WITH PASSWORD '{{ project_name }}';
-GRANT ALL PRIVILEGES ON DATABASE {{ project_name }} TO {{ project_name }};
-ALTER USER {{ project_name }} CREATEDB;
+CREATE DATABASE {{ cookiecutter.project_slug }};
+CREATE USER {{ cookiecutter.project_slug }} WITH PASSWORD '{{ cookiecutter.project_slug }}';
+GRANT ALL PRIVILEGES ON DATABASE {{ cookiecutter.project_slug }} TO {{ cookiecutter.project_slug }};
+ALTER USER {{ cookiecutter.project_slug }} CREATEDB;
 ```
 
 ## Run tests

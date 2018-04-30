@@ -1,11 +1,12 @@
 from .base import *
 
 DEBUG = True
+SECRET_KEY = 'dev'
 
 # Database
 DATABASES['default'].update({
-    'USER': '{{ project_name }}',
-    'PASSWORD': '{{ project_name }}',
+    'USER': '{{ cookiecutter.project_slug }}',
+    'PASSWORD': '{{ cookiecutter.project_slug }}',
     'HOST': '127.0.0.1',
 })
 
