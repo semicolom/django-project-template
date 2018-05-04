@@ -1,6 +1,8 @@
 # Django Project Template
 
-## It comes with
+Django boilerplate based on https://github.com/audreyr/cookiecutter
+
+## Features
 - Django
 - Makefile
 - flake8

@@ -1,5 +1,7 @@
 # {{ cookiecutter.project_name }}
 
+{{ cookiecutter.description }}
+
 ## Installation
 
 Make sure you have installed in your OS
