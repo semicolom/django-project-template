@@ -31,9 +31,6 @@ virtualenv_base:
 	$(PIP) install -U "pip"
 
 virtualenv: virtualenv_base
-	$(PIP) install -r $(REQUIREMENTS)
-
-virtualenv_test: virtualenv_base
 	$(PIP) install -r $(REQUIREMENTS_TEST)
 
 install: virtualenv_base
