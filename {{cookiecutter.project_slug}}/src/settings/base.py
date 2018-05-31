@@ -4,12 +4,16 @@ Django settings for {{ cookiecutter.project_name }} project.
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import environ
+
+root = environ.Path(__file__) - 2  # three folder back (/a/b/c/ - 3 = /)
+BASE_DIR = root()
+env = environ.Env()
+env.read_env(str(root.path('.env')))
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = env('DJANGO_SECRET_KEY', default='dev')
 
 DEBUG = False
 
@@ -72,9 +76,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': '{{ cookiecutter.project_slug }}',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
+        'USER': env('DJANGO_DATABASE_DEFAULT_USER', default='{{ cookiecutter.project_slug }}'),
+        'PASSWORD': env(
+            'DJANGO_DATABASE_DEFAULT_PASSWORD',
+            default='{{ cookiecutter.project_slug }}'
+        ),
+        'HOST': env('DJANGO_DATABASE_DEFAULT_HOST', default='127.0.0.1'),
     }
 }
 
@@ -112,6 +119,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+MEDIA_URL = '/media/'
+
 # Django debug toolbar settings
 DEBUG_TOOLBAR = False
 
@@ -134,3 +143,19 @@ LOGGING = {
         },
     }
 }
+
+# AWS S3
+DEFAULT_FILE_STORAGE = 'main.storage_backends.MediaStorage'
+AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID', default='')
+AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY', default='')
+AWS_QUERYSTRING_AUTH = False
+AWS_STORAGE_BUCKET_NAME = '{{ cookiecutter.project_slug }}'
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('DJANGO_EMAIL_HOST', default='')
+EMAIL_PORT = env('DJANGO_EMAIL_PORT', default='')
+EMAIL_HOST_USER = env('DJANGO_EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = env('DJANGO_EMAIL_HOST_PASSWORD', default='')
+EMAIL_USE_TLS = True
+SERVER_EMAIL = 'no-reply@{{ cookiecutter.project_domain }}'
