@@ -13,7 +13,7 @@ postgresql
 ```
 
 Create a PostgreSQL database
-```sh
+```
 sudo su - postgres
 psql
 CREATE DATABASE {{ cookiecutter.project_slug }};
@@ -25,10 +25,10 @@ ALTER USER {{ cookiecutter.project_slug }} CREATEDB;
 Then run:
 ```
 make requirements
-make virtualenv_test
+make virtualenv
 source venv/bin/activate
 cd src/
-./manage migrate
+./manage.py migrate
 ```
 
 ## Run tests
