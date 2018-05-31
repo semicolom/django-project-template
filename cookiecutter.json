@@ -1,7 +1,7 @@
 {
   "project_name": "My Project",
   "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
-  "project_domain": "{{ project_slug }}.com",
+  "project_domain": "{{ cookiecutter.project_slug }}.com",
   "description": "My Project description",
   "author_name": "Toni Colom",
   "author_email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com"
