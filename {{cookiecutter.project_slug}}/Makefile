@@ -41,23 +41,11 @@ build: clean virtualenv_base
 	$(PIP) download --dest $(PIP_DOWNLOAD) -r $(REQUIREMENTS)
 	@tar -czf $(ARTIFACT) --exclude=venv --exclude=.git --exclude=$(ARTIFACT) * $(PIP_DOWNLOAD)
 
-isort: virtualenv_test
+isort: virtualenv
 	$(ISORT) -rc -y src/
 
-test: virtualenv_test
+test: virtualenv
 	$(ISORT) -rc -c src/
 	$(FLAKE8) src/
 	$(COVERAGE) run --source='src/' src/manage.py test src/
 	$(COVERAGE) report
-
-run:
-	$(PYTHON) src/manage.py runserver
-
-makemigrations:
-	$(PYTHON) src/manage.py makemigrations
-
-migrate:
-	$(PYTHON) src/manage.py migrate
-
-collectstatic:
-	$(PYTHON) src/manage.py collectstatic -l --noinput

@@ -26,7 +26,9 @@ Then run:
 ```
 make requirements
 make virtualenv_test
-make migrate
+source venv/bin/activate
+cd src/
+./manage migrate
 ```
 
 ## Run tests
