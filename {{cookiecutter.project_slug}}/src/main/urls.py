@@ -6,6 +6,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+# On development serve media and static files using django
+if settings.DEBUG:
+    from django.conf.urls.static import static
+
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 # Django debug toolbar URLs
 if settings.DEBUG_TOOLBAR:
     import debug_toolbar
