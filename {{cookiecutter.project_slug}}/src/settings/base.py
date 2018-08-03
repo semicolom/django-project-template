@@ -17,11 +17,16 @@ SECRET_KEY = env('DJANGO_SECRET_KEY', default='dev')
 
 DEBUG = False
 
-ALLOWED_HOSTS = []
+SITE_DOMAIN = env('DJANGO_SITE_DOMAIN', default='*')
+SITE_PROTOCOL = env('DJANGO_SITE_PROTOCOL', default='http://')
+SITE_URL = '{0}{1}'.format(SITE_PROTOCOL, SITE_DOMAIN)
+
+ALLOWED_HOSTS = [SITE_DOMAIN]
 
 ADMINS = [
     ('{{ cookiecutter.author_name }}', '{{ cookiecutter.author_email }}')
 ]
+ADMIN_URL = env('DJANGO_ADMIN_URL', default='admin')
 
 # Application definition
 INSTALLED_APPS = [
