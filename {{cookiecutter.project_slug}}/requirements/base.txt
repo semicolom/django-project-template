@@ -1,7 +1,7 @@
 django
 
-# PostgrSQL - Python
-psycopg2-binary
+# PostgreSQL - Python
+psycopg2
 
 # A better shell
 django-extensions
