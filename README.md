@@ -19,5 +19,5 @@ pip install -U cookiecutter
 
 Now run it against this repo:
 ```
-cookiecutter https://github.com/tcolom/django-project-template
+cookiecutter https://github.com/semicolom/django-project-template
 ```
