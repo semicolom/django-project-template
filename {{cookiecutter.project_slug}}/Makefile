@@ -35,6 +35,7 @@ virtualenv: virtualenv_base
 
 install: virtualenv_base
 	$(PIP) install -I --no-index --find-links=$(PIP_DOWNLOAD) $(PIP_DOWNLOAD)/*
+	@rm -rf $(PIP_DOWNLOAD)
 
 build: clean virtualenv_base
 	@mkdir $(PIP_DOWNLOAD)
