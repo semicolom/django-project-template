@@ -19,7 +19,7 @@ DEBUG = False
 
 SITE_DOMAIN = env('DJANGO_SITE_DOMAIN', default='*')
 SITE_PROTOCOL = env('DJANGO_SITE_PROTOCOL', default='http://')
-SITE_URL = '{0}{1}'.format(SITE_PROTOCOL, SITE_DOMAIN)
+SITE_URL = f'{SITE_PROTOCOL}{SITE_DOMAIN}'
 
 ALLOWED_HOSTS = [SITE_DOMAIN]
 
@@ -60,7 +60,9 @@ ROOT_URLCONF = 'main.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +82,7 @@ WSGI_APPLICATION = 'wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '{{ cookiecutter.project_slug }}',
+        'NAME': env('DJANGO_DATABASE_DEFAULT_NAME', default='{{ cookiecutter.project_slug }}'),
         'USER': env('DJANGO_DATABASE_DEFAULT_USER', default='{{ cookiecutter.project_slug }}'),
         'PASSWORD': env(
             'DJANGO_DATABASE_DEFAULT_PASSWORD',
@@ -169,4 +171,7 @@ EMAIL_PORT = env('DJANGO_EMAIL_PORT', default='')
 EMAIL_HOST_USER = env('DJANGO_EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = env('DJANGO_EMAIL_HOST_PASSWORD', default='')
 EMAIL_USE_TLS = True
-SERVER_EMAIL = 'no-reply@{{ cookiecutter.project_domain }}'
+SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default='no-reply@{{ cookiecutter.project_domain }}')
+
+# Site settings
+SITE_NAME = "{{ cookiecutter.project_name }}"

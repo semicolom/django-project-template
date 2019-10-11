@@ -41,14 +41,6 @@ Update packages: `make requirements`. Creates a requirements.txt file with the l
 
 `make virtualenv` Creates a new virtualenv using requirements.txt.
 
-`make virtualenv_test` Creates a development virtualenv using requirements.txt and packages from requirements/test.txt.
-
 `make clean` Removes the .pyc files and deletes the virtualenv folder.
 
 `make isort` Checks your code and fixes the imports using isort.
-
-`make run` Will execute a runserver with development settings.
-
-`make makemigrations` Will execute a makemigrations with development settings.
-
-`make migrate` Will execute a migrate with development settings.
