@@ -23,7 +23,7 @@ requirements:
 	virtualenv -p python3.6 temp_venv
 	$(TMP_PIP) install -U "pip"
 	$(TMP_PIP) install -r $(REQUIREMENTS_BASE)
-	$(TMP_PIP) freeze > requirements/requirements.txt
+	$(TMP_PIP) freeze | grep -v "pkg-resources" > requirements/requirements.txt
 	@rm -rf temp_venv
 
 virtualenv_base:
