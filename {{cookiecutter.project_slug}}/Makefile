@@ -24,6 +24,7 @@ requirements:
 	$(TMP_PIP) install -U "pip"
 	$(TMP_PIP) install -r $(REQUIREMENTS_BASE)
 	$(TMP_PIP) freeze | grep -v "pkg-resources" > requirements/requirements.txt
+	$(TMP_PIP) list --outdated --format=columns > requirements/requirements-outdated.txt
 	@rm -rf temp_venv
 
 virtualenv_base:
@@ -42,11 +43,11 @@ build: clean virtualenv_base
 	$(PIP) download --dest $(PIP_DOWNLOAD) -r $(REQUIREMENTS)
 	@tar -czf $(ARTIFACT) --exclude=venv --exclude=.git --exclude=$(ARTIFACT) * $(PIP_DOWNLOAD)
 
-isort: virtualenv
+isort:
 	$(ISORT) -rc -y src/
 
-test: virtualenv
+test:
 	$(ISORT) -rc -c src/
 	$(FLAKE8) src/
-	$(COVERAGE) run --source='src/' src/manage.py test src/
+	$(COVERAGE) run --source='src/' src/manage.py test src/ --parallel --no-input
 	$(COVERAGE) report
